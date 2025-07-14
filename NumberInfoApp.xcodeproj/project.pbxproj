@@ -14,7 +14,7 @@
 		8966DC102E25A9740088F1A4 /* Exceptions for "NumberInfoApp" folder in "NumberInfoApp" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				App/Info.plist,
 			);
 			target = 8966DBFD2E25A9730088F1A4 /* NumberInfoApp */;
 		};
