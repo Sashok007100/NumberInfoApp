@@ -14,7 +14,26 @@ final class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        fetchPhoneInfo()
     }
 
 }
 
+// MARK: - Networking
+extension ViewController {
+    private func fetchPhoneInfo() {
+        URLSession.shared.dataTask(with: URL(string: link)!) { data, _, error in
+            guard let data else {
+                print(error?.localizedDescription ?? "No error description.")
+                return
+            }
+            
+            do {
+                let phoneNumberInfo = try JSONDecoder().decode(Phone.self, from: data)
+                print(phoneNumberInfo)
+            } catch {
+                print(error)
+            }
+        }.resume()
+    }
+}
