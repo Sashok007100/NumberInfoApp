@@ -15,5 +15,5 @@ struct Phone: Decodable {
     let country_name: String
     let location: String
     let carrier: String
-    let line_type: String
+    let line_type: String?
 }
