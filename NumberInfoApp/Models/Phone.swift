@@ -5,7 +5,7 @@
 //  Created by Alexandr Artemov (Mac Mini) on 15.07.2025.
 //
 
-struct Phone {
+struct Phone: Decodable {
     let valid: Bool
     let number: String
     let local_format: String
