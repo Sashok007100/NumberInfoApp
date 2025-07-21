@@ -106,8 +106,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="xgj-bW-f0X"/>
                     <connections>
-                        <outlet property="activityIndicator" destination="KR4-pZ-tN0" id="c9B-Lx-AOl"/>
-                        <outlet property="phoneInfoLabel" destination="Qsc-mM-f4y" id="T02-sr-RxA"/>
+                        <outlet property="activityIndicator" destination="KR4-pZ-tN0" id="5dz-cR-pJc"/>
+                        <outlet property="phoneInfoLabel" destination="Qsc-mM-f4y" id="nCP-e8-2H0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nnf-ih-aP1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
