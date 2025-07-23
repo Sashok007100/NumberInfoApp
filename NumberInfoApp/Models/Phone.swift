@@ -16,6 +16,24 @@ struct Phone: Decodable {
     let location: String
     let carrier: String
     let lineType: LineType?
+    
+    init(phoneInfo: [String: Any]) {
+        valid = phoneInfo["valid"] as? Bool ?? false
+        number = phoneInfo["number"] as? String ?? ""
+        localFormat = phoneInfo["local_format"] as? String ?? ""
+        internationalFormat = phoneInfo["international_format"] as? String ?? ""
+        countryPrefix = phoneInfo["country_prefix"] as? String ?? ""
+        countryCode = phoneInfo["country_code"] as? String ?? ""
+        countryName = phoneInfo["country_name"] as? String ?? ""
+        location = phoneInfo["location"] as? String ?? ""
+        carrier = phoneInfo["carrier"] as? String ?? ""
+        if let value = phoneInfo["line_type"] as? String {
+            lineType = LineType(from: value)
+        } else {
+            lineType = LineType.unknown
+        }
+    }
+    
 }
 
 enum LineType: String, Decodable {
