@@ -34,6 +34,10 @@ struct Phone: Decodable {
         }
     }
     
+    static func getPhoneInfo(from value: Any) -> Phone {
+        let phoneDetails = value as? [String: Any] ?? [:]
+        return Phone(phoneInfo: phoneDetails)
+    }
 }
 
 enum LineType: String, Decodable {
