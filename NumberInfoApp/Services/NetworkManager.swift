@@ -6,11 +6,7 @@
 //
 
 import Foundation
-
-enum NetworkError: Error {
-    case noData
-    case decodingError
-}
+import Alamofire
 
 final class NetworkManager {
     static let shared = NetworkManager()
