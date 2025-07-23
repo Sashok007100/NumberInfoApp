@@ -13,25 +13,17 @@ final class NetworkManager {
     
     private init() {}
     
-    func fetch(from url: URL, completion: @escaping(Result<Phone, NetworkError>) -> Void) {
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data else {
-                print(error ?? "No error description")
-                completion(.failure(.noData))
-                return
-            }
-            
-            do {
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                
-                let phoneInfo = try decoder.decode(Phone.self, from: data)
-                DispatchQueue.main.async {
+    func fetch(from url: URL, completion: @escaping(Result<Phone, AFError>) -> Void) {
+        AF.request(url)
+            .validate()
+            .responseJSON { dataResponse in
+                switch dataResponse.result {
+                case .success(let data):
+                    let phoneInfo = Phone.getPhoneInfo(from: data)
                     completion(.success(phoneInfo))
+                case .failure(let error):
+                    completion(.failure(error))
                 }
-            } catch {
-                completion(.failure(.decodingError))
             }
-        }.resume()
     }
 }
