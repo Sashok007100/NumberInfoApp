@@ -36,6 +36,7 @@ extension PhoneInfoViewController {
             case .success(let info):
                 activityIndicator.stopAnimating()
                 phoneInfoLabel.isHidden = false
+                title = info.number
                 phoneInfoLabel.text = """
                     Действительный номер: \(info.valid ? "✅ Да" : "❌ Нет")
                     Местный формат: \(!info.localFormat.isEmpty ? info.localFormat : "Неизвестно")
