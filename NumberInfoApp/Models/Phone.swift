@@ -18,43 +18,27 @@ struct Phone: Decodable {
     let lineType: LineType?
 }
 
-enum LineType: Decodable {
-    case mobile
-    case landline
-    case specialServices
-    case tollFree
-    case premiumRate
-    case satellite
-    case paging
-    case unknown(String)
-
-    init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        let raw = (try? container.decode(String.self)) ?? ""
-        let normalized = raw.replacingOccurrences(of: "_", with: "").lowercased()
-
-        switch normalized {
+enum LineType: String, Decodable {
+    case mobile = "Мобильный"
+    case landline = "Стационарный"
+    case specialServices = "Служебный номер"
+    case tollFree = "Бесплатный"
+    case premiumRate = "Премиум-номер"
+    case satellite = "Спутник"
+    case paging = "Пейджер"
+    case unknown = "Неизвестно"
+    
+    init(from string: String) {
+        switch string {
         case "mobile": self = .mobile
         case "landline": self = .landline
-        case "specialservices": self = .specialServices
-        case "tollfree": self = .tollFree
-        case "premiumrate": self = .premiumRate
+        case "special_services": self = .specialServices
+        case "toll_free": self = .tollFree
+        case "premium_rate": self = .premiumRate
         case "satellite": self = .satellite
         case "paging": self = .paging
-        default: self = .unknown(raw)
-        }
-    }
-
-    var localizedDescription: String {
-        switch self {
-        case .mobile: return "Мобильный"
-        case .landline: return "Стационарный"
-        case .specialServices: return "Служебный номер"
-        case .tollFree: return "Бесплатный"
-        case .premiumRate: return "Премиум-номер"
-        case .satellite: return "Спутник"
-        case .paging: return "Пейджер"
-        case .unknown(let raw): return "Неизвестно (\(raw))"
+        default:
+            self = .unknown
         }
     }
 }
