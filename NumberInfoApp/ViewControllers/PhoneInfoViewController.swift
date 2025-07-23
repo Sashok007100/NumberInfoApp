@@ -45,7 +45,7 @@ extension PhoneInfoViewController {
                     Страна: \(!info.countryName.isEmpty ? info.countryName : "Неизвестно")
                     Город: \(!info.location.isEmpty ? info.location : "Неизвестно")
                     Оператор: \(!info.carrier.isEmpty ? info.carrier : "Неизвестно")
-                    Тип связи: \(info.lineType?.localizedDescription ?? "Неизвестно")
+                    Тип связи: \(info.lineType?.rawValue ?? "Неизвестно")
                     """
             case .failure(let error):
                 print(error)
