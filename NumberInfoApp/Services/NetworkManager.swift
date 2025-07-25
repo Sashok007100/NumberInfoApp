@@ -8,6 +8,14 @@
 import Foundation
 import Alamofire
 
+enum Link {
+    case baseUrl
+    
+    var url: String {
+        "https://apilayer.net/api/validate?access_key=ed268fd18b92c030907e2edccb9b8764&number="
+    }
+}
+
 final class NetworkManager {
     static let shared = NetworkManager()
     

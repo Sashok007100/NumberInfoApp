@@ -17,6 +17,20 @@ struct Phone: Decodable {
     let carrier: String
     let lineType: LineType?
     
+    var description: String {
+                        """
+                            Действительный номер: \(valid ? "✅ Да" : "❌ Нет")
+                            Местный формат: \(!localFormat.isEmpty ? localFormat : "Неизвестно")
+                            Международный формат: \(!internationalFormat.isEmpty ? internationalFormat : "Неизвестно")
+                            Международный код: \(!countryPrefix.isEmpty ? countryPrefix : "Неизвестно")
+                            Буквенный код страны: \(!countryCode.isEmpty ? countryCode : "Неизвестно")
+                            Страна: \(!countryName.isEmpty ? countryName : "Неизвестно")
+                            Город: \(!location.isEmpty ? location : "Неизвестно")
+                            Оператор: \(!carrier.isEmpty ? carrier : "Неизвестно")
+                            Тип связи: \(lineType?.rawValue ?? "Неизвестно")
+                            """
+    }
+    
     init(phoneInfo: [String: Any]) {
         valid = phoneInfo["valid"] as? Bool ?? false
         number = phoneInfo["number"] as? String ?? ""
