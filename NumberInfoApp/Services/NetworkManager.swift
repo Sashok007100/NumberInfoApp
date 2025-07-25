@@ -7,6 +7,14 @@
 
 import Foundation
 
+enum Link {
+    case baseUrl
+    
+    var url: String {
+        "https://apilayer.net/api/validate?access_key=ed268fd18b92c030907e2edccb9b8764&number="
+    }
+}
+
 enum NetworkError: Error {
     case noData
     case decodingError

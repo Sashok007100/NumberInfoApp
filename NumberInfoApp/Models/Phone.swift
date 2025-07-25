@@ -16,6 +16,20 @@ struct Phone: Decodable {
     let location: String
     let carrier: String
     let lineType: LineType?
+    
+    var description: String {
+                                    """
+                                    Действительный номер: \(valid ? "✅ Да" : "❌ Нет")
+                                    Местный формат: \(!localFormat.isEmpty ? localFormat : "Неизвестно")
+                                    Международный формат: \(!internationalFormat.isEmpty ? internationalFormat : "Неизвестно")
+                                    Международный код: \(!countryPrefix.isEmpty ? countryPrefix : "Неизвестно")
+                                    Буквенный код страны: \(!countryCode.isEmpty ? countryCode : "Неизвестно")
+                                    Страна: \(!countryName.isEmpty ? countryName : "Неизвестно")
+                                    Город: \(!location.isEmpty ? location : "Неизвестно")
+                                    Оператор: \(!carrier.isEmpty ? carrier : "Неизвестно")
+                                    Тип связи: \(lineType?.localizedDescription ?? "Неизвестно")
+                                    """
+    }
 }
 
 enum LineType: Decodable {
@@ -27,12 +41,12 @@ enum LineType: Decodable {
     case satellite
     case paging
     case unknown(String)
-
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         let raw = (try? container.decode(String.self)) ?? ""
         let normalized = raw.replacingOccurrences(of: "_", with: "").lowercased()
-
+        
         switch normalized {
         case "mobile": self = .mobile
         case "landline": self = .landline
@@ -44,7 +58,7 @@ enum LineType: Decodable {
         default: self = .unknown(raw)
         }
     }
-
+    
     var localizedDescription: String {
         switch self {
         case .mobile: return "Мобильный"
