@@ -5,7 +5,7 @@
 //  Created by Alexandr Artemov (Mac Mini) on 15.07.2025.
 //
 
-struct Phone: Decodable {
+struct Phone {
     let valid: Bool
     let number: String
     let localFormat: String
@@ -54,7 +54,7 @@ struct Phone: Decodable {
     }
 }
 
-enum LineType: String, Decodable {
+enum LineType: String {
     case mobile = "Мобильный"
     case landline = "Стационарный"
     case specialServices = "Служебный номер"
